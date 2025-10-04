@@ -1,0 +1,15 @@
+---
+title: "Homework 3 - P8105"
+author: "Sergio Ozoria Ramírez (smo2147)"
+date: "2025-10-02"
+output: github_document
+---
+
+# Loading Instacart Dataset
+
+```{r loading datasets, message = FALSE}
+library(tidyverse)
+library(p8105.datasets)
+data("instacart")
+```
+
