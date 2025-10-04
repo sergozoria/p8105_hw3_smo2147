@@ -5,11 +5,29 @@ date: "2025-10-02"
 output: github_document
 ---
 
-# Loading Instacart Dataset
+# Setup & Loading Instacart Dataset
 
-```{r loading datasets, message = FALSE}
+```{r loading packages + setup, message = FALSE}
 library(tidyverse)
+library(patchwork)
 library(p8105.datasets)
 data("instacart")
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
 ```
+
 
