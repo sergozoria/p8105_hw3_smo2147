@@ -45,10 +45,15 @@ instacart |>
   labs(
     title = "Aisles with More than 10,000 Items Ordered",
     x = "Aisle Categories",
-    y = "Number of Aisles",
-    caption = "Data from Instacart Package" 
+    y = "Number of Aisles Ordered",
+    caption = "Data: Instacart Online Grocery Shopping (2017)" 
   ) +
   geom_col() +
-  coord_flip()
+  coord_flip() +
+  scale_y_continuous(
+    breaks = c(0, 25000, 50000, 75000, 
+               100000, 125000, 150000),
+    labels = comma
+  )
 ```
 
