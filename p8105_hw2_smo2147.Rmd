@@ -5,7 +5,9 @@ date: "2025-10-02"
 output: github_document
 ---
 
-# Setup & Loading Instacart Dataset
+# Problem 1
+
+#### Setup & Loading Instacart Dataset
 
 ```{r loading packages + setup, message = FALSE}
 library(tidyverse)
@@ -14,9 +16,9 @@ library(p8105.datasets)
 data("instacart")
 
 knitr::opts_chunk$set(
-  fig.width = 6,
-  fig.asp = .6,
-  out.width = "90%"
+  fig.width = 8,
+  fig.asp = 1,
+  out.width = "100%"
 )
 
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
@@ -30,12 +32,13 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-# Description of Instacart Dataset
+#### Description of Instacart Dataset
 
 The instacart dataset describes online grocery shopping behaviors from local stores across New York City from 2017. The dataset contains **`r nrow(instacart)`** observations and **`r ncol(instacart)`** variables in total, including the name of the product (i.e., `product name`), the aisle (i.e., `aisle`), and the department (i.e., `department`). The dataset also includes a mix of numeric and categorical variables. The average order hour of the day among shopping users is approximately **`r instacart |> pull(order_hour_of_day) |> mean(na.rm = TRUE) |> round()`**, whereas the average number of days since last order is **`r instacart |> pull(days_since_prior_order) |> mean(na.rm = TRUE) |> round()`**. Altogether, this means users mostly grocery shop early afternoon with users typically reordering every 17 days.
 
 There are `r instacart |> pull(aisle) |>  n_distinct()` unique aisles in this dataset, with **`r instacart |> count(aisle, sort = TRUE) |> slice_head(n = 10) |> pull(aisle)`** being the top 10 aisles where items are mostly ordered from.
 
+#### Figure.1. Bar Chart of Number of Items Ordered by Aisle
 
 ```{r}
 instacart |> 
@@ -52,8 +55,26 @@ instacart |>
   coord_flip() +
   scale_y_continuous(
     breaks = c(0, 25000, 50000, 75000, 
-               100000, 125000, 150000),
-    labels = comma
-  )
+               100000, 125000, 150000))
 ```
+
+#### Table.1. Most Popular Items in Aisles `Baking Ingredients`, `Dog Food Care`, and `Packaged Vegetables Fruits`
+
+```{r}
+instacart |> 
+  filter(aisle %in% c(
+    "packaged vegetables fruits",
+    "baking ingredients", 
+    "dog food care")) |>
+  count(aisle, product_name, name = "total_ordered", sort = TRUE) |> 
+  group_by(aisle) |> 
+  slice_max(total_ordered, n = 3) |> 
+   rename(
+    Aisle = aisle,
+    Product = product_name,
+    `# of Items Ordered` = total_ordered
+  ) |> 
+  knitr::kable()
+```
+
 
