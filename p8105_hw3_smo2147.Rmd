@@ -1,7 +1,7 @@
 ---
 title: "Homework 3 - P8105"
 author: "Sergio Ozoria Ramírez (smo2147)"
-date: "2025-10-02"
+date: "2025-10-13"
 output: github_document
 ---
 
