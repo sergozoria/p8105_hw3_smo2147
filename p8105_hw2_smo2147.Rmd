@@ -83,7 +83,7 @@ instacart |>
     "Pink Lady Apples",
     "Coffee Ice Cream")) |> 
   group_by(product_name, order_dow) |> 
-  summarize(mean_hour = round(mean(order_hour_of_day, na.rm = TRUE))) |> 
+  summarize(mean_hour = mean(order_hour_of_day, na.rm = TRUE)) |> 
   mutate(order_dow = recode(order_dow,
    `0` = "Sunday",
    `1` = "Monday",
@@ -96,6 +96,11 @@ instacart |>
   pivot_wider(
     names_from = order_dow,
     values_from = mean_hour) |> 
-  knitr::kable()
+  rename(Product = product_name) |> 
+  knitr::kable(
+    digits = 0,
+    caption = 
+      "Mean order hour by weekday for Coffee Ice Cream and Pink Lady Apples"
+  )
 ```
 
