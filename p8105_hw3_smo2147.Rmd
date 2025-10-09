@@ -77,6 +77,8 @@ instacart |>
   knitr::kable()
 ```
 
+#### Table.2. Mean Order Hour by Day of the Week for `Coffee Ice Cream` and `Pink Lady Apples`
+
 ```{r}
 instacart |> 
   filter(product_name %in% c(
@@ -99,8 +101,9 @@ instacart |>
   rename(Product = product_name) |> 
   knitr::kable(
     digits = 0,
-    caption = 
-      "Mean order hour by weekday for Coffee Ice Cream and Pink Lady Apples"
+   caption = "Mean order hour by weekday for Coffee Ice Cream and Pink Lady Apples"
   )
 ```
+
+# Problem 2
 
